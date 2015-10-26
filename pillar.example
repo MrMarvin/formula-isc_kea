@@ -1,0 +1,39 @@
+kea:
+  kea.conf: |
+    {
+      "Dhcp4": {
+        "control-socket": {
+          "socket-type": "unix",
+          "socket-name": "/run/kea.sock"
+        },
+        "valid-lifetime": 4000,
+        "renew-timer": 1000,
+        "rebind-timer": 2000,
+
+        "interfaces-config": {
+          "interfaces": [ "eth0" ]
+          },
+          "lease-database": {
+            "type": "mysql",
+            "name": "kea",
+            "host": "database",
+            "user": "database_user",
+            "ssl_ca": "/etc/ssl/certs/rds-combined-ca-bundle.pem",
+            "password": "database_password"
+            }
+          },
+
+          "Logging": {
+            "loggers": [
+                {
+                    "name": "kea-dhcp4",
+                    "output_options": [
+                        {
+                            "output": "syslog"
+                        }
+                    ],
+                    "severity": "INFO"
+                }
+            ]
+          }
+    }
