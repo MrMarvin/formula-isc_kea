@@ -1,6 +1,9 @@
 {% set kea = salt['grains.filter_by']({
     'Debian': {
         'pkg': 'isc-kea',
-        'config': '/etc/kea/kea.conf'
+        'config': '/etc/kea/kea.conf',
+        'bin_dhcp4': '/usr/local/sbin/kea-dhcp4',
+        'bin_dhcp6': '/usr/local/sbin/kea-dhcp6',
+        'bin_dhcpddns': '/usr/local/sbin/kea-dhcp-ddns'
     },
 }, merge=salt['pillar.get']('kea:lookup')) %}
